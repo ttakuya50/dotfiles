@@ -1,5 +1,5 @@
-# Zsh のインタラクティブシェル（ユーザーがコマンドを入力する画面）が起動した際に読み込まれる設定ファイル
-# Created by newuser for 5.2
+# zsh のインタラクティブシェル（ユーザーがコマンドを入力する画面）が起動した際に読み込まれる設定ファイル
+# zplugを使用 → https://github.com/zplug/zplug/blob/master/doc/guide/ja/README.md
 
 # 環境変数
 export LANG=ja_JP.UTF-8
@@ -8,7 +8,6 @@ export LANG=ja_JP.UTF-8
 autoload -Uz colors
 colors
 
-########################################
 # 補完
 # 補完機能を有効にする
 autoload -Uz compinit
@@ -25,18 +24,11 @@ zstyle ':completion:*:default' menu select=1
 # ../ の後は今いるディレクトリを補完しない
 zstyle ':completion:*' ignore-parents parent pwd ..
 
-# sudo の後ろでコマンド名を補完する
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
-
-# ps コマンドのプロセス名補完
-zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
-
 # 高機能なワイルドカード展開を使用する
 setopt extended_glob
 
 ########################################
-# vcs_info
+# vcs_info(gitの情報を表示)
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 
@@ -48,11 +40,13 @@ function _update_vcs_info_msg() {
     RPROMPT="${vcs_info_msg_0_}"
 }
 add-zsh-hook precmd _update_vcs_info_msg
-
 ########################################
 
-#プロンプト
-% RPROMPT="%{^[[32m%}[%n@%m:%d]%{^[[m%}"
+#プロンプト(カレントディレクトリ表示)
+PROMPT="
+ %{${fg[yellow]}%}%~%{${reset_color}%}
+[%n]$ "
+PROMPT2='[%n]> '
 
 # ディレクトリとシンボリックリンクと実行ファイルだけ色つけました。補間の一覧も同じ色
 export LSCOLORS=gxfxxxxxcxxxxxxxxxgxgx
@@ -61,3 +55,31 @@ zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
 # 個別設定を読み込む
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+
+########################################
+source ~/.zplug/init.zsh
+
+# ダブルクォーテーションで囲うと良い
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+
+# コマンドも管理する
+# グロブを受け付ける（ブレースやワイルドカードなど）
+zplug "Jxck/dotfiles", as:command, use:"bin/{histuniq,color}"
+
+# 読み込み順序を設定する
+# 例: "zsh-syntax-highlighting" は compinit の前に読み込まれる必要がある
+# （10 以上は compinit 後に読み込まれるようになる）
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
+
+# 未インストール項目をインストールする
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# コマンドをリンクして、PATH に追加し、プラグインは読み込む
+zplug load --verbose
