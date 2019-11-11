@@ -135,6 +135,3 @@ if [ -e ~/google-cloud-sdk ]; then
   source ~/google-cloud-sdk/path.zsh.inc
   source ~/google-cloud-sdk/completion.zsh.inc
 fi
-
-# awsコマンドで補完機能が使用できるように
-source /Users/a13539//Library/Python/3.6/bin/aws_zsh_completer.sh
