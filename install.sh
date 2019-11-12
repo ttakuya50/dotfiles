@@ -2,16 +2,16 @@
 
 DOTPATH=~/.dotfiles
 
-# 使えない場合は curl か wget を使用する
+initialize() {
+    echo "init"
+    # 使えない場合は curl か wget を使用する
 if [ `which curl` ] || [ `which wget` ]; then
     tarball="https://github.com/TsujiTakuya55/dotfiles/archive/master.tar.gz"
 
     # どっちかでダウンロードして，tar に流す
-    #if has "curl"; then
     if [ `which curl` ]; then
         curl -L "$tarball"
 
-    #elif has "wget"; then
     elif [ `which wget` ]; then
         wget -O - "$tarball"
 
@@ -51,3 +51,15 @@ do
 
     ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
+}
+
+deploy() {
+    #...
+    echo "deploy"
+}
+
+if [ "$1" = "deploy" -o "$1" = "d" ]; then
+    deploy
+elif [ "$1" = "init" -o "$1" = "i" ]; then
+    initialize
+fi
