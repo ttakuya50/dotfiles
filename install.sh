@@ -22,9 +22,9 @@ initialize() {
     fi
 }
 
-# dotfilesをリンク
-deploy() {
-    echo "deploy"
+# ファイルをダウンロード
+download() {
+    echo "download"
         # 使えない場合は curl か wget を使用する
     if [ `which curl` ] || [ `which wget` ]; then
         tarball="https://github.com/TsujiTakuya55/dotfiles/archive/master.tar.gz"
@@ -44,6 +44,11 @@ deploy() {
     else
         die "curl or wget required"
     fi
+}
+
+# dotfilesをリンク
+deploy() {
+    echo "deploy"
 
     cd ~/.dotfiles
     if [ $? -ne 0 ]; then
@@ -61,6 +66,8 @@ deploy() {
 
 if [ "$1" = "deploy" -o "$1" = "d" ]; then
     deploy
-elif [ "$1" = "init" -o "$1" = "i" ]; then
-    initialize
+elif [ "$1" = "install" -o "$1" = "i" ]; then
+    initialize &&
+    download &&
+    deploy
 fi
