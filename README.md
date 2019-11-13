@@ -2,7 +2,7 @@
 
 ## Installation
 ```bash
-curl -L raw.github.com/TsujiTakuya55/dotfiles/master/install.sh init| bash
+bash -c "$(curl -L raw.github.com/TsujiTakuya55/dotfiles/master/install.sh)" -s init
 ```
 
 ## Test＆Debug
