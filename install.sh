@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DOTPATH=~/.dotfiles
+GITHUB="https://github.com/TsujiTakuya55/dotfiles.git";
 
 # 環境構築
 initialize() {
@@ -25,8 +26,17 @@ initialize() {
 # ファイルをダウンロード
 download() {
     echo "download"
-        # 使えない場合は curl か wget を使用する
-    if [ `which curl` ] || [ `which wget` ]; then
+
+    if [ -d "$DOTPATH" ]; then
+        log_fail "$DOTPATH: already exists"
+        exit 1
+    fi
+
+    # gitが使用できる場合はgitを使用
+    if  [ `which git` ]; then
+        git clone --recursive "$GITHUB" "$DOTPATH"
+    # 使えない場合は curl か wget を使用する
+    elif [ `which curl` ] || [ `which wget` ]; then
         tarball="https://github.com/TsujiTakuya55/dotfiles/archive/master.tar.gz"
 
         # どっちかでダウンロードして，tar に流す
