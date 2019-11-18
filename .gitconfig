@@ -1,0 +1,13 @@
+[core]
+        excludesfile = ~/.gitignore_global
+[difftool "sourcetree"]
+        cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
+        path =
+[mergetool "sourcetree"]
+        cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+        trustExitCode = true
+[user]
+        name = TsujiTakuya55
+        email = tsujitakuya50@gmail.com
+[commit]
+        template = ~/.gitmessage.txt
