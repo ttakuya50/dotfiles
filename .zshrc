@@ -133,11 +133,6 @@ PATH=$HOME/.nodebrew/current/bin:$PATH
 PATH=$GOROOT/bin:$PATH #godocが使用できるように
 export PATH
 
-# JAVA_VERSIONを変更することによってバージョン切り換え可能
-# export JAVA_VERSION=1.8
-# export JAVA_HOME=$(/usr/libexec/java_home -v $JAVA_VERSION)
-# eval "$(rbenv init -)"
-
 # 補完機能の強化.
 autoload -U compinit
 compinit
