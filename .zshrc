@@ -201,3 +201,6 @@ if [ -e ~/google-cloud-sdk ]; then
   source ~/google-cloud-sdk/path.zsh.inc
   source ~/google-cloud-sdk/completion.zsh.inc
 fi
+
+# zshenvファイル読み込み
+source ~/.zshenv
