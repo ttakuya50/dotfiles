@@ -115,9 +115,14 @@ export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 zstyle ':completion:*' list-colors \
 'di=36' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
-export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+# goenv インストール方法 → https://github.com/syndbg/goenv/blob/master/INSTALL.md
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+export GOENV_DISABLE_GOPATH=1
+eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 
 # sourceTreeのリリースブランチマージのため
 export FLAGS_GETOPT_CMD="$(brew --prefix gnu-getopt)/bin/getopt"
