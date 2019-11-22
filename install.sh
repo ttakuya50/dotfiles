@@ -7,11 +7,15 @@ GITHUB="https://github.com/TsujiTakuya55/dotfiles.git";
 initialize() {
     echo "init"
 
+    # brewがインストールされていなければインストール実行
+    if !(type "brew" > /dev/null 2>&1); then
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+
     # zshがインストールされていなければインストール実行
     if !(type "zsh" > /dev/null 2>&1); then
         # 対象のコマンドをインストールするような処理
         echo "zsh install・・・"
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         brew install zsh
     fi
 
@@ -19,7 +23,7 @@ initialize() {
     if !(type "zplug" > /dev/null 2>&1); then
         # 対象のコマンドをインストールするような処理
         echo "zplug install・・・"
-        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+        brew install zplug
     fi
 }
 
