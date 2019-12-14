@@ -8,6 +8,6 @@
         trustExitCode = true
 [user]
         name = ttakuya50
-        email = tsujitakuya50@gmail.com
+        email = ttakuya500@gmail.com
 [commit]
         template = ~/.gitmessage.txt
