@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOTPATH=~/.dotfiles
-GITHUB="https://github.com/TsujiTakuya55/dotfiles.git";
+GITHUB="https://github.com/ttakuya50/dotfiles.git";
 
 # 環境構築
 initialize() {
@@ -41,7 +41,7 @@ download() {
         git clone --recursive "$GITHUB" "$DOTPATH"
     # 使えない場合は curl か wget を使用する
     elif [ `which curl` ] || [ `which wget` ]; then
-        tarball="https://github.com/TsujiTakuya55/dotfiles/archive/master.tar.gz"
+        tarball="https://github.com/ttakuya50/dotfiles/archive/master.tar.gz"
 
         # どっちかでダウンロードして，tar に流す
         if [ `which curl` ]; then
