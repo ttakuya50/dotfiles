@@ -1,0 +1,56 @@
+let mapleader = "\<Space>"
+set keep-english-in-normal
+set NERDTree
+set highlightedyank
+set ignorecase "検索時大文字小文字を気にしない
+set hlsearch "検索時にハイライトを有効
+set commentary "コメント化/コメント解除するプラグイン
+set clipboard+=unnamedplus "ヤンクした内容をクリップボードにコピーして欲しい
+
+nmap [[[ <Action>(Back)
+nmap ]]] <Action>(Forward)
+map <leader>] <Action>(NextTab)
+map <leader>[ <Action>(PreviousTab)
+nnoremap gf :action FindUsages<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gsm :action GotoSuperMethod<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gr :action RenameElement<CR>
+nnoremap qd :action QuickJavaDoc<CR>
+nnoremap <leader>of :action GotoFile<CR>
+"なぜかFindInFilesの機能が動く↓
+nnoremap <leader>fp :action FindInPath<CR>
+nnoremap <leader>7 :action ActivateStructureToolWindow<CR>
+"nnoremap rtr :action RunToolbarResumeAction<CR>
+"nnoremap <leader>ddd :action Debug<CR>
+"noremap <leader>gd :action Resume Program<CR>
+
+"keymapsettings
+inoremap <silent> jj <ESC><ESC>
+"ESCの２回押手ハイライトを消去
+"inoremap <silent> jj <ESC>
+
+" NERDTree
+nmap <leader>1 :NERDTreeFind<cr>
+nmap <leader>pt :NERDTreeToggle<cr>
+
+" tab
+map <leader>ct <Action>(CloseActiveTab)
+map <leader>jf <Action>(ActivateJSONFormatterToolWindow)
+
+" terminal
+nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
+
+" git
+map <leader>9 <Action>(ActivateVersionControlToolWindow)
+map <leader>git <Action>(Git.Menu)
+map <leader>br <Action>(Git.Branches)
+
+" easymotionの設定
+set easymotion
+" word単位移動
+map <leader>w <Plug>(easymotion-bd-w) 
+" 検索移動
+map <leader>s <Plug>(easymotion-bd-f2)
+" 行移動
+map <leader>l <Plug>(easymotion-bd-jk)
