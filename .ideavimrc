@@ -1,5 +1,9 @@
+"Configuration
 let mapleader = "\<Space>"
-set keep-english-in-normal
+"set keep-english-in-normal
+"set keep-english-in-normal-and-restore-in-insert
+set nowrapscan "検索をファイルの先頭へ循環しない
+set argtextobj
 set NERDTree
 set highlightedyank
 set ignorecase "検索時大文字小文字を気にしない
@@ -9,8 +13,6 @@ set clipboard+=unnamedplus "ヤンクした内容をクリップボードにコ�
 
 nmap [[[ <Action>(Back)
 nmap ]]] <Action>(Forward)
-map <leader>] <Action>(NextTab)
-map <leader>[ <Action>(PreviousTab)
 nnoremap gf :action FindUsages<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap gsm :action GotoSuperMethod<CR>
@@ -19,32 +21,57 @@ nnoremap gr :action RenameElement<CR>
 nnoremap qd :action QuickJavaDoc<CR>
 nnoremap <leader>of :action GotoFile<CR>
 "なぜかFindInFilesの機能が動く↓
-nnoremap <leader>fp :action FindInPath<CR>
-nnoremap <leader>7 :action ActivateStructureToolWindow<CR>
-"nnoremap rtr :action RunToolbarResumeAction<CR>
-"nnoremap <leader>ddd :action Debug<CR>
-"noremap <leader>gd :action Resume Program<CR>
+" global find
+nnoremap <leader>gf :action FindInPath<CR>
+" find
+noremap <leader>f :action Find<CR>
+" gloaal replace
+noremap <leader>gr :action ReplaceInPath<CR>
+" replace
+noremap <leader>r :action Replace<CR>
+noremap gt :action GotoTest<CR>
+" resume - z
+"noremap <leader>z <ESC>:action Resume<CR>
+" jump to next error
+noremap <leader>j :action GotoNextError<CR>
+" jump to previous error
+noremap <leader>k :action GotoPreviousError<CR>
+" param info
+noremap gp :action ParameterInfo<CR>
+" close all editors
+noremap <leader>gca :action CloseAllEditors<CR>
+" インサートモードから抜けると自動的にIMEをオフにする
+set iminsert=2
 
 "keymapsettings
 inoremap <silent> jj <ESC><ESC>
 "ESCの２回押手ハイライトを消去
-"inoremap <silent> jj <ESC>
 
 " NERDTree
 nmap <leader>1 :NERDTreeFind<cr>
-nmap <leader>pt :NERDTreeToggle<cr>
 
 " tab
 map <leader>ct <Action>(CloseActiveTab)
-map <leader>jf <Action>(ActivateJSONFormatterToolWindow)
-
-" terminal
-nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
+map <leader>] <Action>(NextTab)
+map <leader>[ <Action>(PreviousTab)
 
 " git
-map <leader>9 <Action>(ActivateVersionControlToolWindow)
 map <leader>git <Action>(Git.Menu)
 map <leader>br <Action>(Git.Branches)
+nmap <leader>gs :action Vcs.Show.Local.Changes<CR>
+
+"Debug
+map <leader>ab <Action>(ToggleLineBreakpoint)
+" Reload .ideavimrc
+nnoremap <leader>vs :source ~/.ideavimrc<CR>
+
+"Window
+nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
+noremap <leader>jr :action ActivateJiraToolWindow<CR>
+map <leader>0 <Action>(ActivateServicesToolWindow)
+map <leader>jf <Action>(ActivateJSONFormatterToolWindow)
+map <leader>9 <Action>(ActivateVersionControlToolWindow)
+nnoremap <leader>7 :action ActivateStructureToolWindow<CR>
 
 " easymotionの設定
 set easymotion
