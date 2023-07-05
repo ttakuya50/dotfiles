@@ -10,6 +10,7 @@ set ignorecase "検索時大文字小文字を気にしない
 set hlsearch "検索時にハイライトを有効
 set commentary "コメント化/コメント解除するプラグイン
 set clipboard+=unnamedplus "ヤンクした内容をクリップボードにコピーして欲しい
+set multiple-cursors
 
 nmap [[[ <Action>(Back)
 nmap ]]] <Action>(Forward)
@@ -41,14 +42,15 @@ noremap gp :action ParameterInfo<CR>
 " close all editors
 noremap <leader>gca :action CloseAllEditors<CR>
 " インサートモードから抜けると自動的にIMEをオフにする
-set iminsert=2
+"set iminsert=2
 
 "keymapsettings
 inoremap <silent> jj <ESC><ESC>
 "ESCの２回押手ハイライトを消去
 
 " NERDTree
-nmap <leader>1 :NERDTreeFind<cr>
+nmap <leader>e :NERDTreeFind<cr>
+"nmap <leader>e :NERDTreeToggle<cr>
 
 " tab
 map <leader>ct <Action>(CloseActiveTab)
@@ -72,6 +74,7 @@ map <leader>0 <Action>(ActivateServicesToolWindow)
 map <leader>jf <Action>(ActivateJSONFormatterToolWindow)
 map <leader>9 <Action>(ActivateVersionControlToolWindow)
 nnoremap <leader>7 :action ActivateStructureToolWindow<CR>
+nnoremap <leader>8 :action ActivatePullRequestsToolWindow<CR>
 
 " easymotionの設定
 set easymotion
