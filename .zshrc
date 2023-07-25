@@ -2,7 +2,7 @@
 # zplugを使用 → https://github.com/zplug/zplug/blob/master/doc/guide/ja/README.md
 
 ########################################
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=/.zplug
 source $ZPLUG_HOME/init.zsh
 #source ~/.zplug/init.zsh
 
